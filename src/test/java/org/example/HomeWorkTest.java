@@ -53,7 +53,7 @@ class HomeWorkTest {
                 OutputStream answer = new FileOutputStream("target/" + String.format(pattern, "answer"), false);
         ) {
             HomeWork hw = new HomeWork();
-            hw.upit(in, answer);
+            hw.processCommands(in, answer);
 
         }
 
