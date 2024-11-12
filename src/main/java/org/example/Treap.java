@@ -192,6 +192,23 @@ public class Treap {
         return false;
     }
 
+    public boolean findAndAddToKth(int k, int val) {
+        Node cur = root;
+        while (cur != null) {
+            int leftSize = sizeOf(cur.left);
+            if (leftSize == k) {
+                cur.value = cur.value + val;
+                return true;
+            }
+            cur.pushPromise();
+            cur = leftSize > k ? cur.left : cur.right;
+            if (leftSize < k) {
+                k -= leftSize + 1;
+            }
+        }
+        return false;
+    }
+
     public static class Statistic {
         int minValue;
         int sumValue;

@@ -53,8 +53,7 @@ public class HomeWork {
                 int x = Integer.parseInt(args[3]);
                 int multiplier = 1;
                 for (int i = Integer.parseInt(args[1]) - 1; i < Integer.parseInt(args[2]); i++){
-                    Integer kth = treap.findKth(i);
-                    treap.updateKth(i, x * multiplier++ + kth);
+                    treap.findAndAddToKth(i, x * multiplier++);
                 }
                 break;
             case "3":
