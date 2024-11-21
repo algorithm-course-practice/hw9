@@ -5,7 +5,6 @@ import lombok.SneakyThrows;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
@@ -34,16 +33,15 @@ public class HomeWork {
         if (q < 1 || q > 100000){
             new IllegalArgumentException("Не корректный Q");
         }
-        List<Long> secondLine = Arrays.stream(inList.get(1).split(" "))
-                .map(e -> Long.parseLong(e))
+        List<Integer> secondLine = Arrays.stream(inList.get(1).split(" "))
+                .map(e -> Integer.parseInt(e))
                 .collect(Collectors.toList());
         Treap treap = new Treap();
         // строим дерамиду с неявным индексом
-        for (Long number : secondLine){
+        for (Integer number : secondLine){
             treap.add(number);
         }
         StringBuilder stringBuilder = new StringBuilder();
-        PrintStream printStream = new PrintStream(out);
         // обрабатываем команды
         for (int i = 2; i < q + 2; i++) {
             List<Integer> comandLine = Arrays.stream(inList.get(i).split(" "))
@@ -51,22 +49,18 @@ public class HomeWork {
                     .collect(Collectors.toList());
             switch (comandLine.get(0)) {
                 case (1):
-                    treap.fillValueCase1(comandLine.get(1), comandLine.get(2), comandLine.get(3));
+                    treap.case1(comandLine.get(1) - 1, comandLine.get(2), comandLine.get(3));
                     break;
                 case (2):
-                    treap.fillValueCase2(comandLine.get(1), comandLine.get(2), comandLine.get(3));
+                    treap.case2(comandLine.get(1) - 1, comandLine.get(2), comandLine.get(3));
                     break;
                 case (3):
-                    treap.add(comandLine.get(1), Long.valueOf(comandLine.get(2)));
+                    treap.add(comandLine.get(1) - 1, comandLine.get(2));
                     break;
                 case (4):
-                    Treap.Statistic stats = treap.getStats(comandLine.get(1), comandLine.get(2));
-
-                    if (stringBuilder.length() != 0) {
-                        stringBuilder.append("\n" + stats.sumValue);
-                    } else {
-                        stringBuilder.append(stats.sumValue + "");
-                    }
+                    Treap.Node node = treap.getStats(comandLine.get(1) - 1, comandLine.get(2));
+                    Treap.Statistic stats = node.statistic;
+                    stringBuilder.append(stats.sumValue + "\n");
                     break;
                 default:
                     new IllegalArgumentException("Необычная команда");
