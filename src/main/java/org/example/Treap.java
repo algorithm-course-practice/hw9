@@ -3,7 +3,6 @@ package org.example;
 import lombok.Getter;
 
 import java.lang.reflect.Array;
-import java.util.List;
 import java.util.Random;
 
 public class Treap {
