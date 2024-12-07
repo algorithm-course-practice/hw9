@@ -60,16 +60,6 @@ public class Treap {
             return node != null ? node.size : 0;
         }
 
-        private void inorder(Node cur, List<String> res) {
-            if (cur == null) {
-                return;
-            }
-            cur.pushPromise();
-            inorder(cur.left, res);
-            res.add(cur.toString());
-            inorder(cur.right, res);
-        }
-
         public void addProgression(Integer a, Integer b, Integer x) {
             // [0 < a) [a < N)
             Node[] low = root.split(a);
@@ -275,9 +265,6 @@ public class Treap {
 
             }
 
-            public String getLabel() {
-                return String.format("v=%d, s=%d (prog=%d_%d, prom=%d) sum=%d", value, size, progression, progressionOffset, promise, statistic.sumValue);
-            }
         }
 
     }
