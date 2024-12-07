@@ -161,7 +161,7 @@ public class Treap {
                 if (node == null) {
                     return 0L;
                 }
-                return node != null ? node.statistic.sumValue : 0;
+                return node.statistic.sumValue;
             }
 
 
