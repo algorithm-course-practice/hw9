@@ -233,7 +233,7 @@ public class Treap {
                 }
                 if (hasProgression) {
 
-                    value += (sizeOf(left) + 1 + progressionOffset) * progression;
+                    value += (long) (sizeOf(left) + 1 + progressionOffset) * progression;
                     hasProgression = false;
                     progression = 0;
                 }
